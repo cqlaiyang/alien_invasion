@@ -4,6 +4,7 @@ import pygame
 from Stars.settings import Settings
 from Stars.ship import Ship
 import Stars.game_functions as gf
+from pygame.sprite import Group
 def run_game():
     # 初始化游戏并且创建一个屏幕对象
     pygame.init()
@@ -20,15 +21,21 @@ def run_game():
     # 创建一艘飞船
     ship = Ship(ai_settings,screen)
 
+    # 创建一个用于储存子弹的编组
+    bullets =Group()
+
     # 开始游戏主循环
     while True:
 
         # 监视键盘和鼠标事件
-        gf.check_event(ship)
+        gf.check_event(ai_settings,screen,ship,bullets)
 
         # 更新Ship位置
         ship.update()
 
-        gf.update_screen(ai_settings,screen,ship)
+        # 删除已经消失的子弹
+        gf.update_bullets(bullets)
+
+        gf.update_screen(ai_settings,screen,ship,bullets)
 
 run_game()
