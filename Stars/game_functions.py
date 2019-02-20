@@ -11,6 +11,8 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
         ship.moving_lift = True
     elif event.key == pygame.K_SPACE:
          fire_bullet(ai_settings,screen,ship,bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 def check_keyup_events(event,ship):
     """响应松开"""
@@ -30,6 +32,7 @@ def check_event(ai_settings,screen,ship,bullets):
             check_keydown_events(event,ai_settings,screen,ship,bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event,ship)
+
 
 def update_screen(ai_setting,screen,ship,bullets):
     """更新屏幕上的图像，并切换到新屏幕"""
