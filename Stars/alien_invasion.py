@@ -2,6 +2,7 @@
 import pygame
 
 from Stars.settings import Settings
+from Stars.alien import Alien
 from Stars.ship import Ship
 import Stars.game_functions as gf
 from pygame.sprite import Group
@@ -21,8 +22,13 @@ def run_game():
     # 创建一艘飞船
     ship = Ship(ai_settings,screen)
 
-    # 创建一个用于储存子弹的编组
+    # 创建一个用于储存子弹,外星人的编组
     bullets =Group()
+    aliens = Group()
+
+    # 创建一个外星人群
+
+    alien = Alien(ai_settings,screen)
 
     # 开始游戏主循环
     while True:
@@ -36,6 +42,6 @@ def run_game():
         # 删除已经消失的子弹
         gf.update_bullets(bullets)
 
-        gf.update_screen(ai_settings,screen,ship,bullets)
+        gf.update_screen(ai_settings,screen,ship,aliens,bullets,)
 
 run_game()
